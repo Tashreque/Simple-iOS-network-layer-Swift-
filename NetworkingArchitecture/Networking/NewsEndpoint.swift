@@ -36,13 +36,11 @@ enum NewsEndpoint: Endpoint {
     }
     
     var parameters: [URLQueryItem] {
-        let apiKey: String = "3191677734b945dd866141a14f66c780"
         switch self {
         case .getTopHeadlines(let country, let page):
             return [
                 URLQueryItem(name: "country", value: country),
                 URLQueryItem(name: "page", value: String(page)),
-                URLQueryItem(name: "apiKey", value: apiKey)
             ]
         }
     }

@@ -9,6 +9,9 @@ import Foundation
 
 class NetworkManager {
     class func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> ()) {
+        // Just for demonstration's sake, the api key has been defined here.
+        let apiKey: String = "3191677734b945dd866141a14f66c780"
+        
         // Set a URL component from
         var components = URLComponents()
         components.scheme = endpoint.scheme
@@ -22,6 +25,7 @@ class NetworkManager {
         // Form the URL Request.
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.method
+        urlRequest.setValue(apiKey, forHTTPHeaderField: "X-Api-Key")
         
         // Start a URL session.
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
